@@ -4,6 +4,8 @@ import Auth from "./auth/Auth";
 import CreatePost from "./posts/CreatePost";
 import Posts from "./posts/Posts";
 import ProfileModal from "./auth/Profile";
+import Chat from "./Chat";
+import ChatModal from "./Chat";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -15,6 +17,7 @@ function App() {
     avatar_url: "",
     isModal: false,
   });
+  const [showChat, setShowChat] = useState(false);
 
   // Fetch user profile
   const fetchProfile = async (userId) => {
@@ -97,6 +100,12 @@ function App() {
                     )}
                   </>
                 )}
+                <button
+                  onClick={() => setShowChat(true)}
+                  className="bg-white text-blue-600 px-3 py-1 rounded shadow hover:bg-blue-100 transition"
+                >
+                  Chat
+                </button>
                 {!userData.isModal && (
                   <button
                     onClick={() => setShowProfile(true)}
@@ -116,6 +125,7 @@ function App() {
           </div>
         </div>
       </header>
+      {showChat && <ChatModal user={user} onClose={() => setShowChat(false)} />}
 
       {!user ? (
         <Auth onAuth={setUser} />
@@ -153,6 +163,7 @@ function App() {
           </div>
 
           <Posts user={user} showAll={showAll} key={refresh + "-" + showAll} />
+
         </>
       )}
     </div>

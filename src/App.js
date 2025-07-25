@@ -82,36 +82,38 @@ function App() {
       <header className="bg-blue-600 text-white p-4 mb-8 shadow">
         <div className="max-w-xl mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold tracking-tight">Blog Web</h1>
-          {user && (
-            <div className="flex items-center gap-3">
-              {userData.username && (
-                <>
-                  <span>{userData.username}</span>
-                  {userData.avatar_url && (
-                    <img
-                      src={userData.avatar_url}
-                      alt="Avatar"
-                      className="w-8 h-8 rounded-full"
-                    />
-                  )}
-                </>
-              )}
-              {!userData.isModal && (
+          <div className="flex items-center gap-3">
+            {user && (
+              <>
+                {userData.username && (
+                  <>
+                    <span>{userData.username}</span>
+                    {userData.avatar_url && (
+                      <img
+                        src={userData.avatar_url}
+                        alt="Avatar"
+                        className="w-8 h-8 rounded-full"
+                      />
+                    )}
+                  </>
+                )}
+                {!userData.isModal && (
+                  <button
+                    onClick={() => setShowProfile(true)}
+                    className="bg-white text-blue-600 px-3 py-1 rounded shadow hover:bg-blue-100 transition"
+                  >
+                    Profile
+                  </button>
+                )}
                 <button
-                  onClick={() => setShowProfile(true)}
+                  onClick={handleSignOut}
                   className="bg-white text-blue-600 px-3 py-1 rounded shadow hover:bg-blue-100 transition"
                 >
-                  Profile
+                  Sign Out
                 </button>
-              )}
-              <button
-                onClick={handleSignOut}
-                className="bg-white text-blue-600 px-3 py-1 rounded shadow hover:bg-blue-100 transition"
-              >
-                Sign Out
-              </button>
-            </div>
-          )}
+              </>
+            )}
+          </div>
         </div>
       </header>
 
